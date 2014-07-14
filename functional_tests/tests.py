@@ -59,7 +59,7 @@ class NewVisitorTest(LiveServerTestCase):
 		## of Edith's is coming through from cookies etc
 		self.browser.get(self.live_server_url)
 		page_text = self.browser.find_element_by_tag_name('body').text
-		self.assertNotIn('Buy peacock feathers', page_next)
+		self.assertNotIn('Buy peacock feathers', page_text)
 		self.assertNotIn('make a fly', page_text)
 
 		
@@ -70,9 +70,9 @@ class NewVisitorTest(LiveServerTestCase):
 		inputbox.send_keys(Keys.ENTER)
 
 		# Francis gets his own unique URL
-		francis_lists_url = self.browser.current_url
+		francis_list_url = self.browser.current_url
 		self.assertRegex(francis_list_url, '/lists/.+')
-		self.assertNotEqual(francis_lists_url, edith_lists_url)		
+		self.assertNotEqual(francis_list_url, edith_list_url)		
 
 		# Again, there is no trace of Edith's list
 		page_text = self.browser.find_element_by_tag_name('body').text
